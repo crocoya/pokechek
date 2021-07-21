@@ -32,6 +32,16 @@ export default function Header() {
 
   return (
     <div className='header__container'>
+      <a
+        href='https://github.com/crocoya/poke-check'
+        target='_blank'
+        rel='noreferrer'
+      >
+        <div className='pokecode__source noselect'>{GitHubSvg}</div>
+      </a>
+      <div className='pokechek__logo noselect'>
+        <img src={PokeCheckLogo} alt='' className='poke__logo' />
+      </div>
       <div className='poke__connect'>
         <Button className='connexion' variant='contained' color='primary'>
           Connexion
@@ -40,16 +50,6 @@ export default function Header() {
           Inscription
         </Button>
       </div>
-      <div className='pokechek__logo noselect'>
-        <img src={PokeCheckLogo} alt='' className='poke__logo' />
-      </div>
-      <a
-        href='https://github.com/crocoya/poke-check'
-        target='_blank'
-        rel='noreferrer'
-      >
-        <div className='pokecode__source noselect'>{GitHubSvg}</div>
-      </a>
     </div>
   );
 }

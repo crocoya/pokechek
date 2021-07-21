@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #e8e8e8;
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23ffffff' fill-opacity='0.55' fill-rule='evenodd'/%3E%3C/svg%3E");
+  min-height: 100vh;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+:root {
+  /* ========== */
+  /* COLOR TYPE */
+  /* ========== */
+  --grass: #5fbd58;
+  --bug: #92bc2c;
+  --dark: #595761;
+  --dragon: #0c69c8;
+  --electric: #f2d94e;
+  --fairy: #ee90e6;
+  --fighting: #d3425f;
+  --fire: #dc872f;
+  --flying: #a1bbec;
+  --ghost: #5f6dbc;
+  --ground: #da7c4d;
+  --ice: #75d0c1;
+  --normal: #a0a29f;
+  --poison: #b763cf;
+  --psychic: #ff2ca8;
+  --rock: #a38c21;
+  --steel: #5695a3;
+  --water: #539ddf;
+}

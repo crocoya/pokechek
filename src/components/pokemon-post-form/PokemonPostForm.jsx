@@ -1,49 +1,64 @@
 import {
+  Avatar,
+  Button,
   Container,
-  MenuItem,
-  Select,
+  IconButton,
   TextField,
   Typography,
 } from '@material-ui/core';
+import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import React from 'react';
 import './style/PokemonPostForm.css';
 
 export default function PokemonPostForm() {
-  const [type, setType] = React.useState('');
-  const types = [
-    'all types',
-    'grass',
-    'bug',
-    'dark',
-    'dragon',
-    'electric',
-    'fairy',
-    'fighting',
-    'fire',
-    'flying',
-    'ghost',
-    'ground',
-    'ice',
-    'normal',
-    'poison',
-    'psychic',
-    'rock',
-    'steel',
-    'water',
-  ];
+  const [loading] = React.useState(false);
+  const [file, setFile] = React.useState(null);
 
-  const handleChange = (e) => {
-    setType(e.target.value);
+  const handleChange = function loadFile(e) {
+    if (e.target.files.length > 0) {
+      const file = URL.createObjectURL(e.target.files[0]);
+      setFile(file);
+    }
   };
 
   return (
     <div className='pokemon-post-form__container'>
-      <Container>
-        <Typography component='h1' variant='h5'>
+      <Container className='pokemon-post__container'>
+        <Typography
+          component='h1'
+          variant='h5'
+          style={{ padding: '0 .5rem 0 .5rem' }}
+        >
           Ajoute un pokémon personnalisé !
         </Typography>
 
         <form className='pokemon-post__form'>
+          <input
+            type='file'
+            onChange={handleChange}
+            id='upload'
+            accept='image/*'
+            style={{ display: 'none' }}
+          />
+          <label htmlFor='upload'>
+            <IconButton
+              color='primary'
+              aria-label='upload picture'
+              component='span'
+            >
+              <Avatar
+                id='avatar'
+                src={file}
+                style={{
+                  width: '60px',
+                  height: '60px',
+                }}
+              >
+                <ImageSearchIcon />
+              </Avatar>
+            </IconButton>
+          </label>
+          <label htmlFor='avatar' />
           <TextField
             variant='outlined'
             margin='normal'
@@ -54,14 +69,15 @@ export default function PokemonPostForm() {
             required
             fullWidth
           />
-          <Select
-            labelId='demo-simple-select-label'
-            id='select-types'
-            value={type}
-            onChange={handleChange}
+          <Button
+            type='submit'
+            fullWidth
+            variant='contained'
+            color='primary'
+            disabled={loading}
           >
-            <MenuItem value={types} />
-          </Select>
+            Ajouter
+          </Button>
         </form>
       </Container>
     </div>

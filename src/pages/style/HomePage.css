@@ -1,5 +1,12 @@
 @import '../../style/index.css';
 
+.if-user-logged__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .dresseur__name {
   display: flex;
   justify-content: center;

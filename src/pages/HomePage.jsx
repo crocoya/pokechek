@@ -7,15 +7,18 @@ import './style/HomePage.css';
 
 export default function HomePage() {
   const { currentUser } = useAuth();
-  console.log('test', currentUser);
 
   return (
     <div className='home__container'>
       <Header />
-      <h1 className='dresseur__name'>
-        {currentUser && 'Bienvenue ' + currentUser.pseudo}
-      </h1>
-      <PokemonPostForm />
+      {currentUser ? (
+        <section className='if-user-logged__container'>
+          <h1 className='dresseur__name'>
+            {currentUser && 'Bienvenue ' + currentUser.pseudo}
+          </h1>
+          <PokemonPostForm />
+        </section>
+      ) : null}
       <PokemonList />
     </div>
   );

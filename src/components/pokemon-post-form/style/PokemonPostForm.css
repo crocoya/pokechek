@@ -5,3 +5,10 @@
   background-color: #fff;
   border-radius: 20px;
 }
+
+.pokemon-post__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

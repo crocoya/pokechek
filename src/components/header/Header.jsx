@@ -3,16 +3,9 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../services/firebase/Context';
 import './style/Header.css';
-// import UserService from '../../services/user-service';
 
 export default function Header() {
   const { currentUser, signOutUser } = useAuth();
-  // const [signOut, setSignOut] = React.useState();
-
-  /* React.useEffect(() => {
-    UserService.logOut();
-    setSignOut(UserService.user);
-  }, []); */
 
   const PokeCheckLogo =
     'https://fontmeme.com/permalink/210715/7a172b689fad3f78096321287a74a4db.png';

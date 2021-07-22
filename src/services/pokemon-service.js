@@ -9,6 +9,7 @@ const PokemonService = {
         img: img,
         name: name,
         types: types,
+        createdAt: new Date(),
       },
       { merge: true }
     );
@@ -18,6 +19,7 @@ const PokemonService = {
       img: img,
       name: name,
       types: types,
+      createdAt: new Date(),
     };
   },
 

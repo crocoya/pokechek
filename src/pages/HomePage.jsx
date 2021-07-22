@@ -10,7 +10,7 @@ export default function HomePage() {
   React.useEffect(() => {
     UserService.getCurrentUser();
     setCurrentUser(UserService.user);
-  }, []);
+  }, [currentUser]);
   return (
     <div className='home__container'>
       <Header />

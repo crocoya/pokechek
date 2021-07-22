@@ -14,7 +14,6 @@ export default function PokemonList() {
   React.useEffect(() => {
     async function fetchData() {
       let res = await getAllPokemon(initialUrl);
-      console.log(res);
       setNextUrl(res.next);
       setPrevUrl(res.previous);
       await loadingPokemon(res.results);

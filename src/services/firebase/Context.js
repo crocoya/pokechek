@@ -1,5 +1,6 @@
 import React from 'react';
 import { auth } from './FirebaseConfig';
+import UserService from '../user-service';
 
 const FirebaseContext = React.createContext();
 
@@ -23,7 +24,7 @@ export default function Context({ children }) {
 
   // Déconnexion
   function signOutUser() {
-    return auth.signOut();
+    return auth.signOut() && UserService.logOut();
   }
 
   // Mot de passe oublié

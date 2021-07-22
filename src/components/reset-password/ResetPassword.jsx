@@ -1,8 +1,9 @@
 import React from 'react';
 import { useAuth } from '../../services/firebase/Context';
-import { Button, Container, Typography } from '@material-ui/core';
+import { Button, Container, Grid, Link, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Alert from '@material-ui/lab/Alert';
+import './style/ResetPassword.css';
 
 export default function ResetPassword({ setVisibleForm }) {
   const [email, setEmail] = React.useState('');
@@ -59,6 +60,26 @@ export default function ResetPassword({ setVisibleForm }) {
               {error}
             </Alert>
           )}
+          <Grid container className='pokemon__links'>
+            <Grid item xs>
+              <Link
+                href='#'
+                variant='body2'
+                onClick={() => setVisibleForm('connexion')}
+              >
+                {'Me connecter'}
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link
+                href='#'
+                variant='body2'
+                onClick={() => setVisibleForm('inscription')}
+              >
+                {'Créer mon compte'}
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </Container>
     </div>

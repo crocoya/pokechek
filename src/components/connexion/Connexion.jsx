@@ -29,7 +29,6 @@ export default function Connexion({ setVisibleForm }) {
       await signInWithEmail(email, password).then((data) => {
         UserService.getUser(data.user.uid).then((user) => {
           UserService.logUser(user);
-          console.log('user', UserService.user);
           history.push('/');
         });
       });

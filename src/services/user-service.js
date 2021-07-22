@@ -14,6 +14,10 @@ const UserService = {
     this.user = JSON.parse(localStorage.getItem('user'));
   },
 
+  getUserName() {
+    return this.user;
+  },
+
   logUser(user) {
     this.user = user;
     localStorage.setItem('user', JSON.stringify(this.user));
@@ -30,15 +34,13 @@ const UserService = {
   },
 
   async createUserInDatabase(uid, name, email) {
-    console.log('createUserInDatabase');
-    const result = await firestore.collection('users').doc(uid).set(
+    await firestore.collection('users').doc(uid).set(
       {
         pseudo: name,
         email: email,
       },
       { merge: true }
     );
-    console.log(result);
 
     this.user = {
       uid,

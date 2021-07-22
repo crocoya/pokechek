@@ -22,8 +22,6 @@ export default function Inscription({ setVisibleForm }) {
   const history = useHistory();
 
   async function handleSubmit(e) {
-    console.log(email);
-    console.log(password);
     e.preventDefault();
 
     if (password !== passwordConfirm) {

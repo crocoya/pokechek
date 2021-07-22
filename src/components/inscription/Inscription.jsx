@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../services/firebase/Context';
-import UserService from '../../services/user-service';
 import Container from '@material-ui/core/Container';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
@@ -32,10 +31,8 @@ export default function Inscription({ setVisibleForm }) {
     try {
       setError('');
       setLoading(true);
-      await signUpWithEmail(email, password).then((data) => {
-        UserService.createUserInDatabase(data.user.uid, pseudo, email).then(
-          () => history.push('/')
-        );
+      await signUpWithEmail(email, password, pseudo).then((data) => {
+        history.push('/');
       });
     } catch (err) {
       setError('Création du compte impossible');

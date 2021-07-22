@@ -1,5 +1,6 @@
 import React from 'react';
 import { auth } from './FirebaseConfig';
+import { firestore } from './FirebaseConfig';
 import UserService from '../user-service';
 
 const FirebaseContext = React.createContext();
@@ -13,9 +14,17 @@ export default function Context({ children }) {
   const [loading, setLoading] = React.useState(true);
 
   // Inscription
-  function signUpWithEmail(email, password) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
+  const signUpWithEmail = async (email, password, pseudo) => {
+    const userCredential = await auth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+    await firestore.collection('users').doc(userCredential.user.uid).set({
+      email,
+      pseudo,
+      cretaedAt: new Date(),
+    });
+  };
 
   // Connexion
   function signInWithEmail(email, password) {
@@ -33,9 +42,23 @@ export default function Context({ children }) {
   }
 
   React.useEffect(() => {
-    const unsubcribe = auth.onAuthStateChanged((users) => {
+    const unsubcribe = auth.onAuthStateChanged(async (authUser) => {
+      if (authUser) {
+        const userSnapShot = await firestore
+          .collection('users')
+          .doc(authUser.uid)
+          .get();
+        const dbUser = userSnapShot.data();
+
+        setCurrentUser({
+          ...authUser,
+          ...dbUser,
+        });
+      } else {
+        setCurrentUser(null);
+      }
+
       setLoading(false);
-      setCurrentUser(users);
     });
 
     return unsubcribe;

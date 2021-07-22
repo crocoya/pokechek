@@ -1,20 +1,21 @@
 import React from 'react';
 import Header from '../components/header/Header';
 import PokemonList from '../components/pokemon-list/PokemonList';
-import UserService from '../services/user-service';
+import PokemonPostForm from '../components/pokemon-post-form/PokemonPostForm';
+import { useAuth } from '../services/firebase/Context';
 import './style/HomePage.css';
 
 export default function HomePage() {
-  const [currentUser, setCurrentUser] = React.useState();
+  const { currentUser } = useAuth();
+  console.log('test', currentUser);
 
-  React.useEffect(() => {
-    UserService.getCurrentUser();
-    setCurrentUser(UserService.user);
-  }, [currentUser]);
   return (
     <div className='home__container'>
       <Header />
-      <h1>{currentUser && 'Bonjour ' + currentUser.pseudo}</h1>
+      <h1 className='dresseur__name'>
+        {currentUser && 'Bienvenue ' + currentUser.pseudo}
+      </h1>
+      <PokemonPostForm />
       <PokemonList />
     </div>
   );

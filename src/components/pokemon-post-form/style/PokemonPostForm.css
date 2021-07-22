@@ -1,0 +1,7 @@
+.pokemon-post-form__container {
+  width: 500px;
+  margin-top: 5rem;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 20px;
+}

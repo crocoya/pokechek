@@ -10,6 +10,7 @@ export default function ResetPassword({ setVisibleForm }) {
 
   const { resetPassword } = useAuth();
   const [error, setError] = React.useState('');
+  const [validate, setValidate] = React.useState('');
   const [loading, setLoading] = React.useState(false);
 
   async function handleSubmit(e) {
@@ -19,6 +20,7 @@ export default function ResetPassword({ setVisibleForm }) {
       setError('');
       setLoading(true);
       await resetPassword(email);
+      setValidate('Nous venons de vous envoyer un email');
     } catch (err) {
       setError('Réinitialisation impossible');
     }
@@ -55,6 +57,11 @@ export default function ResetPassword({ setVisibleForm }) {
           >
             Réinitialiser mon mot de passe
           </Button>
+          {validate && (
+            <Alert severity='success' className='pokemon__error'>
+              {validate}
+            </Alert>
+          )}
           {error && (
             <Alert severity='error' className='pokemon__error'>
               {error}

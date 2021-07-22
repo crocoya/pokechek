@@ -1,0 +1,9 @@
+@import '../../style/index.css';
+
+.dresseur__name {
+  display: flex;
+  justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 50px;
+  margin-top: 3rem;
+}

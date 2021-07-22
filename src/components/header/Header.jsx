@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import './style/Header.css';
 
 export default function Header() {
@@ -44,9 +45,11 @@ export default function Header() {
         <img src={PokeCheckLogo} alt='' className='poke__logo' />
       </div>
       <div className='poke__connect'>
-        <Button className='connexion' variant='contained' color='primary'>
-          Mon compte
-        </Button>
+        <Link to='/account'>
+          <Button className='account' variant='contained' color='primary'>
+            Mon compte
+          </Button>
+        </Link>
       </div>
     </div>
   );

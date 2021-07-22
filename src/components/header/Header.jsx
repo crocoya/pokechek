@@ -34,7 +34,7 @@ export default function Header() {
     <div className='header__container'>
       <a
         className='poke__github'
-        href='https://github.com/crocoya/poke-check'
+        href='https://github.com/crocoya/front-end'
         target='_blank'
         rel='noreferrer'
       >

@@ -3,7 +3,7 @@ import './style/PokemonCard.css';
 
 export default function PokemonCard({ pokemon, i }) {
   return (
-    <div className='pokemon__card' key={i}>
+    <div className='pokemon__card noselect' key={i}>
       <div className='card__img'>
         <img src={pokemon.sprites.other.dream_world.front_default} alt='' />
       </div>
@@ -29,12 +29,12 @@ export default function PokemonCard({ pokemon, i }) {
           <p className='title'>Height</p>
           <p>{pokemon.height}</p>
         </div>
-      </div>*/}
+      </div>
 
       <div className='card__data card__data--ability'>
         <p className='title'>Ability</p>
         <p>{pokemon.abilities[0].ability.name}</p>
-      </div>
+      </div>*/}
     </div>
   );
 }

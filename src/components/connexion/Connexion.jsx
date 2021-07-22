@@ -91,7 +91,11 @@ export default function Connexion({ setVisibleForm }) {
           )}
           <Grid container className='pokemon__links'>
             <Grid item xs>
-              <Link href='#' variant='body2'>
+              <Link
+                href='#'
+                variant='body2'
+                onClick={() => setVisibleForm('reset-password')}
+              >
                 Mot de passe oublié ?
               </Link>
             </Grid>

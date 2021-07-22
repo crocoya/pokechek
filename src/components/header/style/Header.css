@@ -2,21 +2,19 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem 0 2rem 0;
+  padding: 3rem 0 2rem 0;
+}
+
+.poke__github {
+  width: 100px;
+  display: flex;
+  justify-content: center;
 }
 
 .poke__connect {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.poke__connect .connexion {
-  margin-right: 1rem;
-}
-
-.pokechek__logo {
-  padding-right: 3rem;
 }
 
 .poke__logo {

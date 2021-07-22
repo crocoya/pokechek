@@ -1,12 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap');
 * {
   margin: 0;
   padding: 0;
+  list-style: none;
+  box-sizing: border-box;
 }
 
 body {
   background-color: #e8e8e8;
   background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23ffffff' fill-opacity='0.55' fill-rule='evenodd'/%3E%3C/svg%3E");
   min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto 0 auto;
 }
 .noselect {
   -webkit-touch-callout: none;
@@ -37,4 +43,94 @@ body {
   --rock: #a38c21;
   --steel: #5695a3;
   --water: #539ddf;
+}
+
+.grass {
+  background: var(--grass);
+  box-shadow: 0 0 20px var(--grass);
+}
+
+.bug {
+  background: var(--bug);
+  box-shadow: 0 0 20px var(--bug);
+}
+
+.dark {
+  background: var(--dark);
+  box-shadow: 0 0 20px var(--dark);
+}
+
+.dragon {
+  background: var(--dragon);
+  box-shadow: 0 0 20px var(--dragon);
+}
+
+.electric {
+  background: var(--electric);
+  box-shadow: 0 0 20px #796d26;
+}
+
+.fairy {
+  background: var(--fairy);
+  box-shadow: 0 0 20px var(--fairy);
+}
+
+.fighting {
+  background: var(--fighting);
+  box-shadow: 0 0 20px var(--fighting);
+}
+
+.flying {
+  background: var(--flying);
+  box-shadow: 0 0 20px var(--flying);
+}
+
+.ghost {
+  background: var(--ghost);
+  box-shadow: 0 0 20px var(--ghost);
+}
+
+.ground {
+  background: var(--ground);
+  box-shadow: 0 0 20px var(--ground);
+}
+
+.ice {
+  background: var(--ice);
+  box-shadow: 0 0 20px var(--ice);
+}
+
+.normal {
+  background: var(--normal);
+  box-shadow: 0 0 20px var(--normal);
+}
+
+.poison {
+  background: var(--poison);
+  box-shadow: 0 0 20px var(--poison);
+}
+
+.psychic {
+  background: var(--psychic);
+  box-shadow: 0 0 20px var(--psychic);
+}
+
+.rock {
+  background: var(--rock);
+  box-shadow: 0 0 20px var(--rock);
+}
+
+.steel {
+  background: var(--steel);
+  box-shadow: 0 0 20px var(--steel);
+}
+
+.water {
+  background: var(--water);
+  box-shadow: 0 0 20px var(--water);
+}
+
+.fire {
+  background: var(--fire);
+  box-shadow: 0 0 20px var(--fire);
 }

@@ -1,38 +1,26 @@
 import React from 'react';
-import axios from 'axios';
 import './style/PokemonList.css';
-import PokemonItem from '../pokemon-item/PokemonItem';
 import PokemonPagination from '../pokemon-pagination/PokemonPagination';
-import { getPokemon } from '../../utils/pokemon';
+import PokemonCard from '../pokemon-card/PokemonCard';
+import { getAllPokemon, getPokemon } from '../../utils/pokemon';
 
 export default function PokemonList() {
-  const [showPokemon, setShowPokemon] = React.useState([]);
-  const [currentPageUrl, setCurrentPageUrl] = React.useState(
-    'https://pokeapi.co/api/v2/pokemon/'
-  );
-  const [nextPageUrl, setNextPageUrl] = React.useState();
-  const [prevPageUrl, setPrevPageUrl] = React.useState();
+  const [pokemonData, setPokemonData] = React.useState([]);
+  const [nextUrl, setNextUrl] = React.useState('');
+  const [prevUrl, setPrevUrl] = React.useState('');
   const [loading, setLoading] = React.useState(true);
+  const initialUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   React.useEffect(() => {
-    setLoading(true);
-    let cancel;
-    axios
-      .get(currentPageUrl, {
-        cancelToken: new axios.CancelToken((c) => (cancel = c)),
-      })
-      .then((res) => {
-        console.log(res);
-        setLoading(false);
-        setNextPageUrl(res.data.next);
-        setPrevPageUrl(res.data.previous);
-        setShowPokemon(res.data.results.map((p) => p.name));
-        loadingPokemon(res.results);
-      })
-      .catch((err) => console.log(err));
-
-    return () => cancel();
-  }, [currentPageUrl]);
+    async function fetchData() {
+      let res = await getAllPokemon(initialUrl);
+      setNextUrl(res.next);
+      setPrevUrl(res.previous);
+      await loadingPokemon(res.results);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
 
   const loadingPokemon = async (data) => {
     let _showPokemon = await Promise.all(
@@ -41,23 +29,44 @@ export default function PokemonList() {
         return pokemonRecord;
       })
     );
-    setShowPokemon(_showPokemon);
+    setPokemonData(_showPokemon);
   };
 
-  function nextPage() {
-    setCurrentPageUrl(nextPageUrl);
-  }
+  const nextPage = async () => {
+    setLoading(true);
+    let data = await getAllPokemon(nextUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false);
+  };
 
-  function prevPage() {
-    setCurrentPageUrl(prevPageUrl);
-  }
-
-  if (loading) return 'Loading...';
+  const prevPage = async () => {
+    if (!prevUrl) return;
+    setLoading(true);
+    let data = await getAllPokemon(prevUrl);
+    await loadingPokemon(data.results);
+    setNextUrl(data.next);
+    setPrevUrl(data.previous);
+    setLoading(false);
+  };
 
   return (
-    <div className='pokemon__container'>
+    <>
       <PokemonPagination nextPage={nextPage} prevPage={prevPage} />
-      <PokemonItem showPokemon={showPokemon} />
-    </div>
+      <div className='pokemon__container'>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <div className='pokemon__items nav'>
+              {pokemonData.map((pokemon, i) => {
+                return <PokemonCard key={i} pokemon={pokemon} />;
+              })}
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

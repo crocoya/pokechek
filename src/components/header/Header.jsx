@@ -1,8 +1,12 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../services/firebase/Context';
 import './style/Header.css';
 
 export default function Header() {
+  const { currentUser, signOutUser } = useAuth();
+
   const PokeCheckLogo =
     'https://fontmeme.com/permalink/210715/7a172b689fad3f78096321287a74a4db.png';
 
@@ -33,22 +37,35 @@ export default function Header() {
   return (
     <div className='header__container'>
       <a
-        href='https://github.com/crocoya/poke-check'
+        className='poke__github'
+        href='https://github.com/crocoya/front-end'
         target='_blank'
         rel='noreferrer'
       >
         <div className='pokecode__source noselect'>{GitHubSvg}</div>
       </a>
       <div className='pokechek__logo noselect'>
-        <img src={PokeCheckLogo} alt='' className='poke__logo' />
+        <Link to='/'>
+          <img src={PokeCheckLogo} alt='' className='poke__logo' />
+        </Link>
       </div>
       <div className='poke__connect'>
-        <Button className='connexion' variant='contained' color='primary'>
-          Connexion
-        </Button>
-        <Button className='inscription' color='primary'>
-          Inscription
-        </Button>
+        {!currentUser ? (
+          <Link to='/account'>
+            <Button className='account' variant='contained' color='primary'>
+              Mon compte
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            className='account'
+            variant='contained'
+            color='primary'
+            onClick={signOutUser}
+          >
+            Déconnexion
+          </Button>
+        )}
       </div>
     </div>
   );

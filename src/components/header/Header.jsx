@@ -33,6 +33,7 @@ export default function Header() {
   return (
     <div className='header__container'>
       <a
+        className='poke__github'
         href='https://github.com/crocoya/poke-check'
         target='_blank'
         rel='noreferrer'
@@ -44,10 +45,7 @@ export default function Header() {
       </div>
       <div className='poke__connect'>
         <Button className='connexion' variant='contained' color='primary'>
-          Connexion
-        </Button>
-        <Button className='inscription' color='primary'>
-          Inscription
+          Mon compte
         </Button>
       </div>
     </div>

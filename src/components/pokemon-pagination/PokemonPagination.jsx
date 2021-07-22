@@ -7,6 +7,7 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    width: '150px',
   },
   container: {
     display: 'flex',

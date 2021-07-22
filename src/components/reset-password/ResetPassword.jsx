@@ -1,6 +1,5 @@
 import React from 'react';
 import { useAuth } from '../../services/firebase/Context';
-import UserService from '../../services/user-service';
 import { Button, Container, Typography } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Alert from '@material-ui/lab/Alert';

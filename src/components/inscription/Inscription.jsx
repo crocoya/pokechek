@@ -8,12 +8,13 @@ import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
 import './style/Inscription.css';
+import Alert from '@material-ui/lab/Alert';
 
-export default function Inscription() {
-  const pseudoRef = React.useRef();
-  const emailRef = React.useRef();
-  const passwordRef = React.useRef();
-  const passwordConfirmRef = React.useRef();
+export default function Inscription({ setVisibleForm }) {
+  const [pseudo, setPseudo] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [passwordConfirm, setPasswordConfirm] = React.useState('');
 
   const { signUpWithEmail } = useAuth();
   const [error, setError] = React.useState('');
@@ -21,9 +22,11 @@ export default function Inscription() {
   const history = useHistory();
 
   async function handleSubmit(e) {
+    console.log(email);
+    console.log(password);
     e.preventDefault();
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    if (password !== passwordConfirm) {
       setError('Le mot de passe ne correspond pas');
       return;
     }
@@ -31,15 +34,10 @@ export default function Inscription() {
     try {
       setError('');
       setLoading(true);
-      await signUpWithEmail(
-        emailRef.current.value,
-        passwordRef.current.value
-      ).then((data) => {
-        UserService.createUserInDatabase(
-          data.user.uid,
-          pseudoRef.current.value,
-          emailRef.current.value
-        ).then(() => history.push('/'));
+      await signUpWithEmail(email, password).then((data) => {
+        UserService.createUserInDatabase(data.user.uid, pseudo, email).then(
+          () => history.push('/')
+        );
       });
     } catch (err) {
       setError('Création du compte impossible');
@@ -63,10 +61,10 @@ export default function Inscription() {
                 required
                 fullWidth
                 id='pseudo'
+                name='pseudo'
                 label='Pseudo'
                 autoComplete='pseudo'
-                autoFocus
-                ref={pseudoRef}
+                onChange={(e) => setPseudo(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -75,11 +73,11 @@ export default function Inscription() {
                 margin='normal'
                 required
                 fullWidth
-                id='email'
+                id='emailUp'
+                name='email'
                 label='Adresse email'
                 autoComplete='email'
-                autoFocus
-                ref={emailRef}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -88,11 +86,12 @@ export default function Inscription() {
                 margin='normal'
                 required
                 fullWidth
-                id='password'
+                name='password'
+                id='passwordUp'
+                type='password'
                 label='Mot de passe'
                 autoComplete='password'
-                autoFocus
-                ref={passwordRef}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -101,11 +100,12 @@ export default function Inscription() {
                 margin='normal'
                 required
                 fullWidth
-                id='password'
+                name='password'
+                id='passwordConfirmUp'
+                type='password'
                 label='Confirmer mot de passe'
                 autoComplete='password'
-                autoFocus
-                ref={passwordConfirmRef}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -124,10 +124,18 @@ export default function Inscription() {
           >
             Créer mon compte
           </Button>
-          {error && <div className='pokemon__error'>{error}</div>}
+          {error && (
+            <Alert severity='error' className='pokemon__error'>
+              {error}
+            </Alert>
+          )}
           <Grid container justifyContent='flex-end' className='pokemon__links'>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link
+                href='#'
+                variant='body2'
+                onClick={() => setVisibleForm('connexion')}
+              >
                 {'Déjà client ? Connecte-toi'}
               </Link>
             </Grid>

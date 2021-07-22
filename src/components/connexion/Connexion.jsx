@@ -7,11 +7,12 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Button, Grid, Link, Typography } from '@material-ui/core';
+import Alert from '@material-ui/lab/Alert';
 import './style/Connexion.css';
 
-export default function Connexion() {
-  const emailRef = React.useRef();
-  const passwordRef = React.useRef();
+export default function Connexion({ setVisibleForm }) {
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
 
   const { signInWithEmail } = useAuth();
   const [error, setError] = React.useState('');
@@ -25,10 +26,7 @@ export default function Connexion() {
     try {
       setError('');
       setLoading(true);
-      await signInWithEmail(
-        emailRef.current.value,
-        passwordRef.current.value
-      ).then((data) => {
+      await signInWithEmail(email, password).then((data) => {
         UserService.getUser(data.user.uid).then((user) => {
           UserService.logUser(user);
           console.log('user', UserService.user);
@@ -59,7 +57,7 @@ export default function Connexion() {
             name='email'
             autoComplete='email'
             autoFocus
-            ref={emailRef}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant='outlined'
@@ -71,7 +69,7 @@ export default function Connexion() {
             type='password'
             id='password'
             autoComplete='current-password'
-            ref={passwordRef}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value='remember' color='primary' />}
@@ -86,7 +84,11 @@ export default function Connexion() {
           >
             Se connecter
           </Button>
-          {error && <div className='pokemon__error'>{error}</div>}
+          {error && (
+            <Alert severity='error' className='pokemon__error'>
+              {error}
+            </Alert>
+          )}
           <Grid container className='pokemon__links'>
             <Grid item xs>
               <Link href='#' variant='body2'>
@@ -94,7 +96,11 @@ export default function Connexion() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link
+                href='#'
+                variant='body2'
+                onClick={() => setVisibleForm('inscription')}
+              >
                 {'Nouveau client ? Créer ton compte'}
               </Link>
             </Grid>

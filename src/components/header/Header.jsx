@@ -1,9 +1,19 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../services/firebase/Context';
 import './style/Header.css';
+// import UserService from '../../services/user-service';
 
 export default function Header() {
+  const { currentUser, signOutUser } = useAuth();
+  // const [signOut, setSignOut] = React.useState();
+
+  /* React.useEffect(() => {
+    UserService.logOut();
+    setSignOut(UserService.user);
+  }, []); */
+
   const PokeCheckLogo =
     'https://fontmeme.com/permalink/210715/7a172b689fad3f78096321287a74a4db.png';
 
@@ -47,11 +57,22 @@ export default function Header() {
         </Link>
       </div>
       <div className='poke__connect'>
-        <Link to='/account'>
-          <Button className='account' variant='contained' color='primary'>
-            Mon compte
+        {!currentUser ? (
+          <Link to='/account'>
+            <Button className='account' variant='contained' color='primary'>
+              Mon compte
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            className='account'
+            variant='contained'
+            color='primary'
+            onClick={signOutUser}
+          >
+            Déconnexion
           </Button>
-        </Link>
+        )}
       </div>
     </div>
   );

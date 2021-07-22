@@ -53,19 +53,21 @@ export default function PokemonList() {
   };
 
   return (
-    <div className='pokemon__container'>
+    <>
       <PokemonPagination nextPage={nextPage} prevPage={prevPage} />
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <div className='pokemon__items nav'>
-            {pokemonData.map((pokemon, i) => {
-              return <PokemonCard key={i} pokemon={pokemon} />;
-            })}
-          </div>
-        </>
-      )}
-    </div>
+      <div className='pokemon__container'>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <div className='pokemon__items nav'>
+              {pokemonData.map((pokemon, i) => {
+                return <PokemonCard key={i} pokemon={pokemon} />;
+              })}
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

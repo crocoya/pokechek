@@ -42,7 +42,9 @@ export default function Header() {
         <div className='pokecode__source noselect'>{GitHubSvg}</div>
       </a>
       <div className='pokechek__logo noselect'>
-        <img src={PokeCheckLogo} alt='' className='poke__logo' />
+        <Link to='/'>
+          <img src={PokeCheckLogo} alt='' className='poke__logo' />
+        </Link>
       </div>
       <div className='poke__connect'>
         <Link to='/account'>

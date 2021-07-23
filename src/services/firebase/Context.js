@@ -42,8 +42,8 @@ export default function Context({ children }) {
   }
 
   // Ajouter un pokémon
-  const addPokemon = async (id, name, image, type) => {
-    await firestore.collection('posts').doc(id).set({
+  const addPokemon = async (uid, name, image, type) => {
+    await firestore.collection('posts').doc(uid).set({
       name,
       image,
       type,

@@ -23,8 +23,12 @@ const PokemonService = {
     };
   },
 
-  async getPokemon(uid) {
-    const getPostSnapShot = await firestore.collection('posts').doc(uid).get();
+  async getPokemon(uid, name, image, type) {
+    const getPostSnapShot = await firestore.collection('posts').doc(uid).get({
+      name,
+      image,
+      type,
+    });
     const post = getPostSnapShot.data();
     return post;
   },

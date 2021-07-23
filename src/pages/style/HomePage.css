@@ -13,4 +13,8 @@
   font-family: 'Rajdhani', sans-serif;
   font-size: 50px;
   margin-top: 3rem;
+  color: #ffe12f;
+  text-shadow: 2px 2px 0 #4074b5, 2px -2px 0 #4074b5, -2px 2px 0 #4074b5,
+    -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
+    -2px 0px 0 #4074b5, 0px -2px 0 #4074b5, 2px 2px 2px rgb(52 106 189 / 0%);
 }

@@ -3,6 +3,7 @@ import './style/PokemonList.css';
 import PokemonPagination from '../pokemon-pagination/PokemonPagination';
 import PokemonCard from '../pokemon-card/PokemonCard';
 import { getAllPokemon, getPokemon } from '../../utils/pokemon';
+import LoaderSalameche from '../loader/LoaderSalameche';
 
 export default function PokemonList() {
   const [pokemonData, setPokemonData] = React.useState([]);
@@ -34,21 +35,25 @@ export default function PokemonList() {
 
   const nextPage = async () => {
     setLoading(true);
-    let data = await getAllPokemon(nextUrl);
-    await loadingPokemon(data.results);
-    setNextUrl(data.next);
-    setPrevUrl(data.previous);
-    setLoading(false);
+    setTimeout(async () => {
+      let data = await getAllPokemon(nextUrl);
+      await loadingPokemon(data.results);
+      setNextUrl(data.next);
+      setPrevUrl(data.previous);
+      setLoading(false);
+    }, 800);
   };
 
   const prevPage = async () => {
     if (!prevUrl) return;
     setLoading(true);
-    let data = await getAllPokemon(prevUrl);
-    await loadingPokemon(data.results);
-    setNextUrl(data.next);
-    setPrevUrl(data.previous);
-    setLoading(false);
+    setTimeout(async () => {
+      let data = await getAllPokemon(prevUrl);
+      await loadingPokemon(data.results);
+      setNextUrl(data.next);
+      setPrevUrl(data.previous);
+      setLoading(false);
+    }, 800);
   };
 
   return (
@@ -56,7 +61,7 @@ export default function PokemonList() {
       <PokemonPagination nextPage={nextPage} prevPage={prevPage} />
       <div className='pokemon__container'>
         {loading ? (
-          <p>Loading...</p>
+          <LoaderSalameche />
         ) : (
           <>
             <div className='pokemon__items nav'>

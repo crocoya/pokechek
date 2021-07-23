@@ -34,13 +34,12 @@ export default function Inscription({ setVisibleForm }) {
       setError('');
       setLoading(true);
       await signUpWithEmail(email, password, pseudo).then((data) => {
+        setLoading(false);
         history.push('/');
       });
     } catch (err) {
       setError('Création du compte impossible');
     }
-
-    setLoading(false);
   }
   return (
     <div className='inscription__container'>

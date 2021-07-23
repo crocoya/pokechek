@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import Header from '../components/header/Header';
 import PokemonList from '../components/pokemon-list/PokemonList';
-import SharePokemon from '../components/pokemon-post-form/SharePokemon';
+import SharePokemon from '../components/share-pokemon/SharePokemon';
 import { useAuth } from '../services/firebase/Context';
 import './style/HomePage.css';
 

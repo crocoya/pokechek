@@ -41,6 +41,16 @@ export default function Context({ children }) {
     return auth.sendPasswordResetEmail(email);
   }
 
+  // Ajouter un pokémon
+  const addPokemon = async (id, name, image, type) => {
+    await firestore.collection('posts').doc(id).set({
+      name,
+      image,
+      type,
+      createdAt: new Date(),
+    });
+  };
+
   React.useEffect(() => {
     const unsubcribe = auth.onAuthStateChanged(async (authUser) => {
       if (authUser) {
@@ -70,6 +80,7 @@ export default function Context({ children }) {
     signInWithEmail,
     signOutUser,
     resetPassword,
+    addPokemon,
   };
 
   return (

@@ -4,53 +4,50 @@ import {
   Container,
   Grid,
   IconButton,
-  Link,
   TextField,
   Typography,
+  Link,
 } from '@material-ui/core';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import Alert from '@material-ui/lab/Alert';
 import React from 'react';
-import { useAuth } from '../../services/firebase/Context';
-import './style/PokemonPostForm.css';
+import firebaseConfig from '../../services/firebase/FirebaseConfig';
+import './style/SharePokemon.css';
 
-export default function PokemonPostForm() {
-  const [loading, setLoading] = React.useState(false);
+const SharePokemon = ({ setOpenForm, setVisiblePokemon }) => {
   const [file, setFile] = React.useState(null);
+  const [name, setName] = React.useState(null);
+  const [type, setType] = React.useState(null);
   const [validate, setValidate] = React.useState('');
   const [error, setError] = React.useState('');
 
-  const nameRef = React.useRef();
-  const imageRef = React.useRef();
-  const typeRef = React.useRef();
+  const add = React.useCallback(
+    async (e) => {
+      e.preventDefault();
 
-  const { addPokemon } = useAuth();
-
-  const handleChange = function loadFile(e) {
-    if (e.target.files.length > 0) {
-      const file = URL.createObjectURL(e.target.files[0]);
-      setFile(file);
-    }
-  };
-
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try {
       setError('');
-      setLoading(true);
-      await addPokemon(
-        nameRef.current.value,
-        imageRef.current.value,
-        typeRef.current.value
-      );
+      if (!file || !name || !type) {
+        setError('Il manque le portrait de votre pokémon');
+        return;
+      }
+
+      const storageRef = firebaseConfig.storage().ref();
+      const fileRef = storageRef.child(file.name);
+      const fileSrc = await fileRef.put(file);
+      const img = await fileSrc.ref.getDownloadURL();
+
+      const data = {
+        file,
+        name,
+        type,
+        img,
+      };
       setValidate('Votre Pokémon a bien été ajouter');
-    } catch (err) {
-      setError("Impossible d'ajouter un pokemon");
-    }
 
-    setLoading(false);
-  }
-
+      firebaseConfig.database().ref('pokemon-list').push(data);
+    },
+    [file, name, type]
+  );
   return (
     <div className='pokemon-post-form__container'>
       <Container className='pokemon-post__container'>
@@ -62,10 +59,10 @@ export default function PokemonPostForm() {
           Ajoute un pokémon personnalisé !
         </Typography>
 
-        <form className='pokemon-post__form' onSubmit={handleSubmit}>
+        <form className='pokemon-post__form' onSubmit={add}>
           <input
             type='file'
-            onChange={handleChange}
+            onChange={(e) => setFile(e.target.files[0])}
             id='upload'
             accept='image/*'
             style={{ display: 'none' }}
@@ -79,7 +76,7 @@ export default function PokemonPostForm() {
               <Avatar
                 id='avatar'
                 required
-                src={file}
+                src={file ? URL.createObjectURL(file) : ''}
                 style={{
                   width: '60px',
                   height: '60px',
@@ -93,6 +90,7 @@ export default function PokemonPostForm() {
           <TextField
             variant='outlined'
             margin='normal'
+            onChange={(e) => setName(e.target.value)}
             id='name'
             label='Nom du Pokémon'
             name='name'
@@ -103,6 +101,7 @@ export default function PokemonPostForm() {
           <TextField
             variant='outlined'
             margin='normal'
+            onChange={(e) => setType(e.target.value)}
             id='type'
             label='Type du Pokémon'
             name='type'
@@ -110,13 +109,7 @@ export default function PokemonPostForm() {
             required
             fullWidth
           />
-          <Button
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            disabled={loading}
-          >
+          <Button type='submit' fullWidth variant='contained' color='primary'>
             Ajouter
           </Button>
           {validate && (
@@ -129,15 +122,31 @@ export default function PokemonPostForm() {
               {error}
             </Alert>
           )}
+
           <Grid container justifyContent='center' className='pokemon__links'>
             <Grid item>
-              <Link href='#' variant='body2'>
+              <Link
+                href='/new-pokemon'
+                variant='body2'
+                onClick={() => setVisiblePokemon('showPokemons')}
+              >
                 {'Afficher les pokémons personnalisés'}
               </Link>
             </Grid>
           </Grid>
+          <Button
+            style={{ marginTop: '2rem' }}
+            type='button'
+            variant='contained'
+            color='secondary'
+            onClick={() => setOpenForm(false)}
+          >
+            Retour
+          </Button>
         </form>
       </Container>
     </div>
   );
-}
+};
+
+export default SharePokemon;

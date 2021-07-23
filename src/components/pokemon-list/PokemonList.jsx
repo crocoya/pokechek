@@ -24,13 +24,15 @@ export default function PokemonList() {
   }, []);
 
   const loadingPokemon = async (data) => {
-    let _showPokemon = await Promise.all(
-      data.map(async (pokemon) => {
-        let pokemonRecord = await getPokemon(pokemon.url);
-        return pokemonRecord;
-      })
-    );
-    setPokemonData(_showPokemon);
+    setTimeout(async () => {
+      let _showPokemon = await Promise.all(
+        data.map(async (pokemon) => {
+          let pokemonRecord = await getPokemon(pokemon.url);
+          return pokemonRecord;
+        })
+      );
+      setPokemonData(_showPokemon);
+    }, 800);
   };
 
   const nextPage = async () => {

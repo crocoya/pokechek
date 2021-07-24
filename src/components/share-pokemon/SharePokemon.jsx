@@ -86,6 +86,11 @@ const SharePokemon = ({ setOpenForm }) => {
               </Avatar>
             </IconButton>
           </label>
+          <p style={{ margin: '1rem 0 1rem 0', color: '#849ba7' }}>
+            <b>Ajoute une image en format SVG</b>
+            <br />
+            ou avec un fond blanc de préférence
+          </p>
           <label htmlFor='avatar' />
           <TextField
             variant='outlined'
@@ -123,7 +128,12 @@ const SharePokemon = ({ setOpenForm }) => {
             </Alert>
           )}
 
-          <Grid container justifyContent='center' className='pokemon__links'>
+          <Grid
+            container
+            justifyContent='center'
+            className='pokemon__links'
+            style={{ marginTop: '1rem' }}
+          >
             <Grid item>
               <Link
                 to='/new-pokemon'
@@ -135,7 +145,7 @@ const SharePokemon = ({ setOpenForm }) => {
             </Grid>
           </Grid>
           <Button
-            style={{ marginTop: '2rem' }}
+            style={{ marginTop: '1rem' }}
             type='button'
             variant='contained'
             color='secondary'

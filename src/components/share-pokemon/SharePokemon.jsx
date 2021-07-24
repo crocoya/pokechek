@@ -6,15 +6,15 @@ import {
   IconButton,
   TextField,
   Typography,
-  Link,
 } from '@material-ui/core';
 import ImageSearchIcon from '@material-ui/icons/ImageSearch';
 import Alert from '@material-ui/lab/Alert';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import firebaseConfig from '../../services/firebase/FirebaseConfig';
 import './style/SharePokemon.css';
 
-const SharePokemon = ({ setOpenForm, setVisiblePokemon }) => {
+const SharePokemon = ({ setOpenForm }) => {
   const [file, setFile] = React.useState(null);
   const [name, setName] = React.useState(null);
   const [type, setType] = React.useState(null);
@@ -126,9 +126,9 @@ const SharePokemon = ({ setOpenForm, setVisiblePokemon }) => {
           <Grid container justifyContent='center' className='pokemon__links'>
             <Grid item>
               <Link
-                href='/new-pokemon'
+                to='/new-pokemon'
                 variant='body2'
-                onClick={() => setVisiblePokemon('showPokemons')}
+                style={{ color: '#3f50b5' }}
               >
                 {'Afficher les pokémons personnalisés'}
               </Link>

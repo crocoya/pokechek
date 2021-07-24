@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: '5rem 0 0 0',
+    padding: '3rem 0 0 0',
   },
 }));
 

@@ -2,6 +2,7 @@ import { Button } from '@material-ui/core';
 import React from 'react';
 import Header from '../components/header/Header';
 import PokemonList from '../components/pokemon-list/PokemonList';
+import ScrollDown from '../components/scroll-down/ScrollDown';
 import SharePokemon from '../components/share-pokemon/SharePokemon';
 import { useAuth } from '../services/firebase/Context';
 import './style/HomePage.css';
@@ -33,6 +34,7 @@ export default function HomePage() {
           )}
         </section>
       ) : null}
+      <ScrollDown />
 
       <PokemonList />
     </div>

@@ -1,0 +1,39 @@
+.scroll-down__container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.mouse {
+  width: 40px;
+  height: 80px;
+  border: 3px solid #ffe12f;
+  border-radius: 60px;
+  position: relative;
+}
+.mouse::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #3f50b5;
+  border-radius: 50%;
+  opacity: 1;
+  animation: wheel 2s infinite;
+  -webkit-animation: wheel 2s infinite;
+}
+@keyframes wheel {
+  to {
+    opacity: 0;
+    top: 60px;
+  }
+}
+@-webkit-keyframes wheel {
+  to {
+    opacity: 0;
+    top: 60px;
+  }
+}

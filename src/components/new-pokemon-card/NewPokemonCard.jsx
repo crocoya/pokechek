@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function NewPokemonCard({ id, name, img, type }) {
-  console.log(name, img, type);
   return (
     <div className='new-pokemon__card noselect' key={id}>
       <div className='new-card__img'>

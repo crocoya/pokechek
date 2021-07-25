@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../services/firebase/FirebaseConfig';
 import NewPokemonCard from '../new-pokemon-card/NewPokemonCard';
+import './style/NewPokemonList.css';
 
 export default function NewPokemonList() {
   const [items, setItem] = React.useState([]);

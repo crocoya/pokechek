@@ -37,3 +37,27 @@
     top: 60px;
   }
 }
+
+/* ========== MOBILE M ========== */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .mouse {
+    width: 30px;
+    height: 50px;
+  }
+
+  .mouse::before {
+    top: 0px;
+  }
+
+  @keyframes wheel {
+    to {
+      top: 30px;
+    }
+  }
+
+  @-webkit-keyframes wheel {
+    to {
+      top: 30px;
+    }
+  }
+}

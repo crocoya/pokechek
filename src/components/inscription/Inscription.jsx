@@ -44,8 +44,8 @@ export default function Inscription({ setVisibleForm }) {
   return (
     <div className='inscription__container'>
       <Container>
-        <Typography component='h1' variant='h5'>
-          Nouveau client ?
+        <Typography component='h1' variant='h5' className='title-create'>
+          Nouveau dresseur ?
         </Typography>
 
         <form className='pokemon__form' onSubmit={handleSubmit}>
@@ -104,10 +104,10 @@ export default function Inscription({ setVisibleForm }) {
                 onChange={(e) => setPasswordConfirm(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} className='checkbox'>
               <FormControlLabel
                 control={<Checkbox value='allowExtraEmails' color='primary' />}
-                label='Je veux recevoir des mises à jour par email.'
+                label="Je m'abonne à la newsletter."
               />
             </Grid>
           </Grid>
@@ -116,6 +116,7 @@ export default function Inscription({ setVisibleForm }) {
             fullWidth
             variant='contained'
             color='primary'
+            className='create-button'
             disabled={loading}
           >
             Créer mon compte

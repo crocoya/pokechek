@@ -5,3 +5,22 @@
   background-color: #fff;
   border-radius: 20px;
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .inscription__container {
+    width: 300px;
+    margin-bottom: 4rem;
+  }
+
+  .title-create {
+    font-size: 22px !important;
+  }
+
+  .checkbox span {
+    font-size: 12px;
+  }
+
+  .create-button {
+    margin-top: 1rem !important;
+  }
+}

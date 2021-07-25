@@ -18,3 +18,10 @@
     -2px -2px 0 #4074b5, 2px 0px 0 #4074b5, 0px 2px 0 #4074b5,
     -2px 0px 0 #4074b5, 0px -2px 0 #4074b5, 2px 2px 2px rgb(52 106 189 / 0%);
 }
+
+/* ========== MOBILE M ========== */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .dresseur__name {
+    font-size: 35px;
+  }
+}

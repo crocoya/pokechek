@@ -42,7 +42,7 @@ export default function Connexion({ setVisibleForm }) {
     <div className='connexion__container'>
       <Container>
         <Typography component='h1' variant='h5'>
-          Déjà client ?
+          Déjà dresseur ?
         </Typography>
 
         <form className='pokemon__form' onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ export default function Connexion({ setVisibleForm }) {
                 variant='body2'
                 onClick={() => setVisibleForm('inscription')}
               >
-                {'Nouveau client ? Créer ton compte'}
+                {'Créer un compte'}
               </Link>
             </Grid>
           </Grid>

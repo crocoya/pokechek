@@ -14,7 +14,7 @@ export default function LoaderSalameche() {
   };
   return (
     <div className='loader__container' style={containerStyles}>
-      <h1>Loading ...</h1>
+      <h1>Chargement ...</h1>
       <img
         src='https://media.giphy.com/media/yhfTY8JL1wIAE/source.gif'
         alt=''

@@ -49,17 +49,18 @@ const SharePokemon = ({ setOpenForm }) => {
     [file, name, type]
   );
   return (
-    <div className='pokemon-post-form__container'>
-      <Container className='pokemon-post__container'>
+    <div className='pokemon-post-form__container noselect'>
+      <Container className='pokemon-post__container noselect'>
         <Typography
           component='h1'
           variant='h5'
+          className='pokemon__title noselect'
           style={{ padding: '0 .5rem 0 .5rem' }}
         >
-          Ajoute un pokémon personnalisé !
+          Ajoute un pokémon personnalisé
         </Typography>
 
-        <form className='pokemon-post__form' onSubmit={add}>
+        <form className='pokemon-post__form noselect' onSubmit={add}>
           <input
             type='file'
             onChange={(e) => setFile(e.target.files[0])}
@@ -138,7 +139,7 @@ const SharePokemon = ({ setOpenForm }) => {
               <Link
                 to='/new-pokemon'
                 variant='body2'
-                style={{ color: '#3f50b5' }}
+                style={{ color: '#3f50b5', textDecoration: 'underline' }}
               >
                 {'Afficher les pokémons personnalisés'}
               </Link>

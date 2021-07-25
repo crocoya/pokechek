@@ -22,3 +22,21 @@
   filter: drop-shadow(5px 0 0 rgba(0, 0, 0, 0.6));
   width: 280px;
 }
+/* ========== MOBILE M ========== */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .poke__github {
+    width: 50px;
+  }
+
+  .poke__logo {
+    width: 120px;
+  }
+
+  .poke__connect button {
+    width: 80px;
+    height: 40px;
+    font-size: 10px;
+    text-transform: capitalize;
+    padding: 0 !important;
+  }
+}

@@ -31,7 +31,7 @@ export default function ResetPassword({ setVisibleForm }) {
   return (
     <div className='reset-password__container'>
       <Container>
-        <Typography component='h1' variant='h5'>
+        <Typography component='h1' variant='h5' className='password-title'>
           Mot de passe oublié ?
         </Typography>
 

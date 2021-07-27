@@ -24,15 +24,13 @@ export default function PokemonList() {
   }, []);
 
   const loadingPokemon = async (data) => {
-    setTimeout(async () => {
-      let _showPokemon = await Promise.all(
-        data.map(async (pokemon) => {
-          let pokemonRecord = await getPokemon(pokemon.url);
-          return pokemonRecord;
-        })
-      );
-      setPokemonData(_showPokemon);
-    }, 800);
+    let _showPokemon = await Promise.all(
+      data.map(async (pokemon) => {
+        let pokemonRecord = await getPokemon(pokemon.url);
+        return pokemonRecord;
+      })
+    );
+    setPokemonData(_showPokemon);
   };
 
   const nextPage = async () => {
@@ -57,7 +55,6 @@ export default function PokemonList() {
       setLoading(false);
     }, 800);
   };
-
   return (
     <>
       <PokemonPagination nextPage={nextPage} prevPage={prevPage} />

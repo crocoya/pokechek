@@ -10,6 +10,7 @@ export default function PokemonList() {
   const [nextUrl, setNextUrl] = React.useState('');
   const [prevUrl, setPrevUrl] = React.useState('');
   const [loading, setLoading] = React.useState(true);
+  const [search, setSearch] = React.useState('');
   const initialUrl = 'https://pokeapi.co/api/v2/pokemon';
 
   React.useEffect(() => {
@@ -21,7 +22,7 @@ export default function PokemonList() {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [search]);
 
   const loadingPokemon = async (data) => {
     let _showPokemon = await Promise.all(
@@ -55,12 +56,27 @@ export default function PokemonList() {
       setLoading(false);
     }, 800);
   };
+
+  console.log(
+    pokemonData
+      .filter((data) => search === data.name)
+      .map((pokemon) => pokemon.name)
+  );
   return (
     <>
+      <input type='search' onChange={(e) => setSearch(e.target.value)} />
       <PokemonPagination nextPage={nextPage} prevPage={prevPage} />
       <div className='pokemon__container'>
         {loading ? (
           <LoaderSalameche />
+        ) : search ? (
+          <div className='pokemon__items nav'>
+            {pokemonData
+              .filter((e) => e.name.includes(search))
+              .map((pokemon, i) => {
+                return <PokemonCard key={i} pokemon={pokemon} />;
+              })}
+          </div>
         ) : (
           <>
             <div className='pokemon__items nav'>

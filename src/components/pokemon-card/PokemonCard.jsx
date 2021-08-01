@@ -1,4 +1,6 @@
 import React from 'react';
+import InfoIcon from '@material-ui/icons/Info';
+import { Link } from 'react-router-dom';
 
 export default function PokemonCard({ pokemon, i }) {
   return (
@@ -24,6 +26,11 @@ export default function PokemonCard({ pokemon, i }) {
             </div>
           );
         })}
+      </div>
+      <div className='card__infos'>
+        <Link to={`/pokemon/${pokemon.name}`}>
+          <InfoIcon style={{ color: '#bdbdbd', marginTop: '1rem' }} />
+        </Link>
       </div>
     </div>
   );
